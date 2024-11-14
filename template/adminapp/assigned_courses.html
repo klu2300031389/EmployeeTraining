@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Assigned Courses</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned Courses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users_with_courses %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        {% if user.usercourse_set.count > 0 %}
+                            <ul>
+                            {% for user_course in user.usercourse_set.all %}
+                                <li>{{ user_course.course.title }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            No courses assigned
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'adminapp:assign_course' %}">Go Back to Assign Courses</a>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f3; /* Light background */
+            color: #333; /* Dark text color */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            margin-bottom: 30px; /* Spacing below navbar */
+            background-color: #007bff; /* Primary color */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        .navbar-brand {
+            color: #fff; /* White brand color */
+        }
+
+        /* Container styles */
+        .container {
+            background: #ffffff; /* White background for content */
+            border-radius: 10px; /* Rounded corners */
+            padding: 40px; /* Increased padding */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            max-width: 800px; /* Max width for the container */
+            margin: auto; /* Center container */
+        }
+
+        /* Heading styles */
+        h2 {
+            color: #007bff; /* Bootstrap primary color */
+            font-size: 1.8rem; /* Increased font size */
+            margin-bottom: 20px; /* Spacing below heading */
+        }
+
+        h3 {
+            color: #333; /* Dark color for module title */
+            margin-top: 20px; /* Spacing above module title */
+            font-size: 1.5rem; /* Increased font size */
+        }
+
+        /* List styles */
+        ul {
+            list-style-type: none; /* Remove default list style */
+            padding: 0; /* Remove default padding */
+        }
+
+        ul li {
+            padding: 10px 0; /* Spacing for each list item */
+            border-bottom: 1px solid #e9ecef; /* Light border for separation */
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+        ul li:hover {
+            background-color: #f1f1f1; /* Highlight effect on hover */
+        }
+
+        /* Button styles */
+        .btn {
+            width: 100%; /* Full-width buttons */
+            padding: 10px; /* Increased padding */
+            margin-top: 20px; /* Space above buttons */
+            font-size: 1.1rem; /* Increased font size */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Primary button color */
+            border: none; /* Remove border */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Secondary button color */
+            border: none; /* Remove border */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker shade on hover */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px; /* Reduced padding on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="{% url 'userapp:UserHomePage' %}">Home</a>
+    </nav>
+
+    <div class="container">
+        <h2>Module Details</h2>
+
+        <!-- Module Title -->
+        <h3>Module {{ module_id }}</h3>
+
+        <!-- Module Content -->
+        <p>Here you can add the details about the module, such as:</p>
+        <ul>
+            <li>Learning Objectives</li>
+            <li>Duration</li>
+            <li>Materials Needed</li>
+            <li>Any other relevant information</li>
+        </ul>
+
+        <!-- Example Detail -->
+        <p>Module {{ module_id }} covers essential topics for onboarding new employees. Please review the materials and complete any associated tasks.</p>
+
+        <!-- Button to Start Training -->
+        <a href="{% url 'userapp:start_training' module_id=module_id %}" class="btn btn-primary">Start Training</a>
+
+        <!-- Button to Go Back -->
+        <a href="{% url 'userapp:UserHomePage' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

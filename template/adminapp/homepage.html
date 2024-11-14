@@ -1,0 +1,219 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training & Onboarding System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .hero {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .hero .cta {
+            margin-top: 20px;
+        }
+        .cta button {
+            padding: 15px 30px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .cta button:hover {
+            background-color: #45a049;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+        .features div {
+            text-align: center;
+        }
+        .features h3 {
+            margin-bottom: 10px;
+        }
+        .announcements {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .announcements h2 {
+            margin-bottom: 20px;
+        }
+        .quick-links {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Rolling animation */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-inner {
+            display: flex;
+            width: 200%; /* Ensures content wraps for smooth scroll */
+            animation: roll 15s linear infinite;
+        }
+
+        .carousel-item {
+            width: 50%; /* Adjust based on the number of images */
+            flex-shrink: 0;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Rolling animation */
+        @keyframes roll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Training & Onboarding System</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Training Programs</a>
+    <a href="#">Onboarding</a>
+    <a href="#">Support</a>
+    <a href="#">About Us</a>
+</nav>
+
+<section class="hero">
+    <h1>Welcome to the Training & Onboarding System</h1>
+    <p>Empowering you with the tools and knowledge to succeed from day one</p>
+    <div class="cta">
+        <button onclick="window.location.href={% url 'adminapp:UserRegisterPageCall' %}">Get Started</button>
+        <button onclick="window.location.href={% url 'adminapp:UserLoginLogic' %}">Sign In</button>
+    </div>
+</section>
+
+<section class="features">
+    <div>
+        <h3>Training Programs</h3>
+        <p>Explore a variety of training programs to boost your skills.</p>
+    </div>
+    <div>
+        <h3>Onboarding Checklist</h3>
+        <p>Track your onboarding progress with step-by-step tasks.</p>
+    </div>
+</section>
+
+<!-- Carousel with rolling effect -->
+<div class="carousel-container">
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <img src="{% static 'image/i1.png' %}" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/i2.png' %}" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/i3.png' %}" alt="Image 3">
+        </div>
+        <!-- Duplicate the images for seamless looping -->
+        <div class="carousel-item">
+            <img src="{% static 'image/i1.png' %}" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/i2.png' %}" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/i3.png' %}" alt="Image 3">
+        </div>
+    </div>
+</div>
+
+<section class="announcements">
+    <h2>Recent Announcements</h2>
+    <p>New: Advanced Leadership Course Available!</p>
+    <p>Orientation for new hires on [10-10-2024]</p>
+</section>
+
+<section class="quick-links">
+    <div>
+        <a href="#">Upcoming Training Sessions</a>
+    </div>
+    <div>
+        <a href="#">My Courses</a>
+    </div>
+    <div>
+        <a href="#">New Employee Handbook</a>
+    </div>
+    <div>
+        <a href="#">Team Directory</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Training & Onboarding System. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

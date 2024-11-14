@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    {% load static %}  <!-- Load the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>User List</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <ul>
+            {% for user in users %}
+                <li>{{ user.username }}</li>  <!-- or use {{ user.get_full_name }} for full names -->
+            {% empty %}
+                <li>No users available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="{% static 'js/scripts.js' %}"></script>  <!-- Link to your JavaScript file -->
+</body>
+</html>

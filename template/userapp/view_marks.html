@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Marks</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Change to column for vertical stacking */
+            align-items: center;    /* Center horizontally */
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            font-size: 28px;
+            color: #004d6e; /* Deep blue */
+        }
+
+        /* Container for table */
+        .table-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            margin: 10px auto; /* Keep margin for spacing */
+            /* Removed margin-top to push it to the top */
+        }
+
+        /* Back button styling */
+        .back-button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 5px 10px; /* Smaller padding */
+            background-color: #004d6e; /* Deep blue */
+            color: #ffffff;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px; /* Smaller font size */
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #003d5b; /* Darker blue on hover */
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #004d6e; /* Deep blue */
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        td {
+            color: #555;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Hover effect for rows */
+        tr:hover td {
+            background-color: #c8e6c9; /* Soft pastel green */
+        }
+
+        /* Empty state styling */
+        .no-marks {
+            color: #d32f2f;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        /* Table Row Counter Styling */
+        td:first-child {
+            font-weight: bold;
+            color: #004d6e;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 24px;
+            }
+            th, td {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% block body %}
+    <div class="table-container">
+        <a href="{% url 'userapp:UserHomePage' %}" class="back-button">Back</a>
+        <h2>Your Marks</h2>
+        {% if marks %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mark in marks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ mark.course }}</td>
+                        <td>{{ mark.marks }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-marks">No marks available</div>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

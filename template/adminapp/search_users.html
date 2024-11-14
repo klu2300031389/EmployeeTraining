@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font style */
+            color: #343a40; /* Dark text color */
+        }
+        h1, h2 {
+            margin-bottom: 1rem; /* Spacing below headings */
+        }
+        .container {
+            max-width: 800px; /* Limit the width of the container */
+            margin: 50px auto; /* Center the container */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            background-color: #ffffff; /* White background for the container */
+            padding: 30px; /* Padding inside the container */
+        }
+        .list-group-item {
+            border: none; /* Remove border from list items */
+            padding: 15px; /* Increase padding for list items */
+            background-color: #f1f1f1; /* Light grey background for list items */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+        }
+        .list-group-item:hover {
+            background-color: #e9ecef; /* Change background color on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .no-results {
+            color: #6c757d; /* Grey color for no results text */
+            font-style: italic; /* Italic style for emphasis */
+            text-align: center; /* Center the no results text */
+            margin-top: 20px; /* Margin above the no results text */
+        }
+        .form-control {
+            border-radius: 0.25rem; /* Rounded corners for input */
+            border: 1px solid #ced4da; /* Custom border color */
+            box-shadow: none; /* Remove default input shadow */
+        }
+        .form-control:focus {
+            border-color: #80bdff; /* Custom focus border color */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Custom focus shadow */
+        }
+        .btn-primary {
+            border-radius: 0.25rem; /* Rounded corners for button */
+            width: 100%; /* Full width button */
+            padding: 10px; /* Padding inside button */
+        }
+        .user-info {
+            margin-bottom: 5px; /* Spacing between user information lines */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Search Users</h1>
+        <a href="{% url 'adminapp:projecthomepage' %}" class="btn btn-secondary btn-sm mb-3">Back to Homepage</a>
+        <form method="get" action="{% url 'adminapp:search_users' %}">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="q" placeholder="Search by username, email, or first name" value="{{ query }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <h2 class="mt-5">Results</h2>
+        {% if results %}
+            <ul class="list-group">
+                {% for user in results %}
+                    <li class="list-group-item">
+                        <div class="user-info"><strong>Username:</strong> {{ user.username }}</div>
+                        <div class="user-info"><strong>Email:</strong> {{ user.email }}</div>
+                        <div class="user-info"><strong>First Name:</strong> {{ user.first_name }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-results">No users found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

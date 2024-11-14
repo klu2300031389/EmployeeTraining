@@ -1,0 +1,74 @@
+<!-- templates/adminapp/user_activity_list.html -->
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Activity Logs</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<a href="{% url 'adminapp:projecthomepage' %}" class="btn btn-secondary btn-sm mb-3">Back to Homepage</a>
+<h2>User Activity Logs</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Activity Type</th>
+            <th>Timestamp</th>
+            <th>IP Address</th>
+            <th>Path</th>
+            <th>Extra Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+        <tr>
+            <td>{{ activity.user.username }}</td>
+            <td>{{ activity.activity_type }}</td>
+            <td>{{ activity.timestamp }}</td>
+            <td>{{ activity.ip_address }}</td>
+            <td>{{ activity.path }}</td>
+            <td>{{ activity.extra_data }}</td> <!-- Display extra data if any -->
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No activity records found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

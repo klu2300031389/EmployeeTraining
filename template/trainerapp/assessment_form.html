@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Assessment</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light background color */
+            color: #333; /* Dark text color */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 600px; /* Limit the width */
+            margin: auto; /* Center the container */
+            background-color: #ffffff; /* White background for the form */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Header Styles */
+        h1 {
+            text-align: center; /* Center the header text */
+            color: #007bff; /* Primary color for the header */
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 15px; /* Space between form groups */
+        }
+
+        label {
+            display: block; /* Labels on their own line */
+            margin-bottom: 5px; /* Space below labels */
+            font-weight: bold; /* Bold labels */
+        }
+
+        /* Input Styles */
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%; /* Full width for inputs */
+            padding: 10px; /* Padding inside inputs */
+            border: 1px solid #ced4da; /* Border color */
+            border-radius: 4px; /* Rounded corners */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block; /* Keep buttons inline */
+            padding: 10px 20px; /* Padding inside buttons */
+            margin-top: 10px; /* Space above buttons */
+            border: none; /* Remove border */
+            border-radius: 4px; /* Rounded corners */
+            text-align: center; /* Center text in buttons */
+            text-decoration: none; /* Remove underline */
+            cursor: pointer; /* Pointer on hover */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Primary button color */
+            color: white; /* Text color */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Secondary button color */
+            color: white; /* Text color */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker shade on hover */
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            color: #721c24; /* Text color for alerts */
+            background-color: #f8d7da; /* Light red background */
+            border: 1px solid #f5c6cb; /* Border color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Assessment</h1>
+
+        <!-- Display form errors if any -->
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Assessment Creation Form -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_course">Course:</label>
+                {{ form.course }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_title">Assessment Title:</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Assessment</button>
+            <a href="{% url 'trainerapp:assignment_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </form>
+    </div>
+</body>
+</html>

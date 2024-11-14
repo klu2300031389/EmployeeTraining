@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Asana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .btn {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #4cae4c;
+        }
+        .skip-link {
+            display: block;
+            text-align: center;
+            color: #5bc0de;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .skip-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tell us about your work</h1>
+            <p>This will help us tailor you. We may also reach out to help you find the right products for your team.</p>
+        </header>
+
+        <main>
+            <form method="post" action="{% url 'userapp:work_info' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="role">What's your role?</label>
+                    <select id="role" name="role" required>
+                        <option value="" disabled selected>Choose one</option>
+                        <option value="manager">Manager</option>
+                        <option value="developer">Developer</option>
+                        <option value="designer">Designer</option>
+                        <option value="marketer">Marketer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="function">Which function best describes your work?</label>
+                    <select id="function" name="function" required>
+                        <option value="" disabled selected>Choose one or more</option>
+                        <option value="product">Product</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="design">Design</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="usage">What do you want to use for?</label>
+                    <select id="usage" name="usage" required>
+                        <option value="" disabled selected>Choose one or more</option>
+                        <option value="project_management">Project Management</option>
+                        <option value="task_management">Task Management</option>
+                        <option value="team_collaboration">Team Collaboration</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Continue</button>
+                <a href="{% url 'UserLoginLogic' %}" class="skip-link">Skip</a>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

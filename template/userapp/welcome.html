@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Asana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #4cae4c;
+        }
+
+        a {
+            color: #5bc0de;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Asana!</h1>
+            <p>You're signing up as <strong>{{ user.email }}</strong>.</p>
+        </header>
+
+        <main>
+            <form method="post" action="{% url 'userapp:next-step' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="full_name">What's your full name?</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+                <button type="submit" class="btn">Continue</button>
+            </form>
+            <p>
+                You're signing up as {{ user.email }}.
+                <a href="{% url 'UserLoginLogic' %}">Wrong account? Log in instead.</a>
+            </p>
+        </main>
+    </div>
+</body>
+</html>

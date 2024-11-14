@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Descriptions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .assessment {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .course-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+        .description {
+            margin-top: 5px;
+            color: #555;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container position-relative">
+        <h2 class="mt-4 text-center">Assessment Descriptions</h2>
+
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="{% url 'userapp:UserHomePage' %}" class="btn btn-primary">Back</a>
+        </div>
+
+        {% for assessment in assessments %}
+            <div class="assessment">
+                <div class="course-title">Course: {{ assessment.course__title }}</div>
+                <div class="description">Description: {{ assessment.description }}</div>
+            </div>
+        {% empty %}
+            <p class="text-center">No assessments available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

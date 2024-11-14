@@ -1,0 +1,81 @@
+<!-- templates/adminapp/track_progress.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Track Progress</title>
+</head>
+<body>
+<div class="container mt-5">
+     <a href="{% url 'trainerapp:TrainerHomePage' %}" class="btn btn-secondary mb-3">Back</a>
+    <h2>Track Progress</h2>
+
+
+    <form method="POST" class="mb-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="user">Select User:</label>
+            <select name="user" id="user" class="form-control" required>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="course">Select Course:</label>
+            <select name="course" id="course" class="form-control" required>
+                {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="progress_percentage">Progress (%):</label>
+            <input type="number" name="progress_percentage" id="progress_percentage" class="form-control" min="0" max="100" required>
+        </div>
+
+        <div class="form-group">
+            <label for="completion_date">Completion Date:</label>
+            <input type="date" name="completion_date" id="completion_date" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Progress</button>
+    </form>
+
+    <h3>Progress Reports</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Course</th>
+                <th>Progress (%)</th>
+                <th>Completion Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in progress_reports %}
+            <tr>
+                <td>{{ report.user.username }}</td>
+                <td>{{ report.course.title }}</td>
+                <td>{{ report.progress_percentage }}</td>
+                <td>{{ report.completion_date }}</td>
+                <td>
+                    <a href="{% url 'trainerapp:edit_progress' report.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'trainerapp:delete_progress' report.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

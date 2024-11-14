@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        form {
+            margin: 0;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Subscribe to Courses</h1>
+        <ul>
+            <li>
+                <h2>Course Title 1</h2>
+                <p>Course description goes here...</p>
+                <form method="post">
+                    <input type="hidden" name="course_id" value="1">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </li>
+            <li>
+                <h2>Course Title 2</h2>
+                <p>Course description goes here...</p>
+                <form method="post">
+                    <input type="hidden" name="course_id" value="2">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </li>
+            <!-- Add more courses as necessary -->
+        </ul>
+        <a href="{% url 'adminapp:user_subscriptions' %}">View My Subscriptions</a>
+    </div>
+</body>
+</html>
